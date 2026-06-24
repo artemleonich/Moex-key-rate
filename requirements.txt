@@ -1,0 +1,18 @@
+# Runtime dependencies for the CBR key rate / MOEX strategy study.
+# Pin to compatible-release specifiers so future contributors get
+# reproducible installs without surprise breakage from a major bump.
+
+# Core numerical + data
+numpy>=1.24,<3.0
+pandas>=2.0,<3.0
+
+# Networking (CBR + MOEX ISS HTTP fetches)
+requests>=2.31,<3.0
+
+# Plotting
+matplotlib>=3.7,<4.0
+
+# Time series modelling — SARIMAX, VAR, Granger causality, CUSUM
+statsmodels>=0.14,<1.0
+
+# Python version: 3.10+ required (uses PEP 604 unions and modern type hints).

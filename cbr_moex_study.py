@@ -12,6 +12,7 @@ Optional (if installed):
 
 from __future__ import annotations
 
+import argparse
 import math
 import os
 import sys
@@ -89,8 +90,18 @@ VOL_WINDOW = 20
 VOL_PCTL_FILTER = 0.5  # trade only when volatility above median (example)
 
 # If True, generate synthetic data instead of fetching from cbr.ru / iss.moex.com
-# (useful when network is unavailable)
-USE_SYNTHETIC = True
+# (useful when network is unavailable).
+#
+# Default is False so that, per the README, running the script produces a
+# real-data analysis out of the box. The previous default of True meant that
+# anyone who cloned the repo and ran the script got a fully synthetic
+# backtest and would not realise the synthetic pipeline was active — the
+# output looks structurally identical to a real-data run.
+#
+# To run offline (no network), either:
+#   - flip this flag, or
+#   - pass --synthetic on the command line (see the new CLI block in main()).
+USE_SYNTHETIC = False
 
 
 # =========================
@@ -937,4 +948,22 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    # Parse a tiny CLI so users can flip USE_SYNTHETIC without editing
+    # source. The default (no flag) uses real CBR + MOEX ISS data per
+    # the README. --synthetic enables offline mode.
+    parser = argparse.ArgumentParser(
+        description="CBR key rate vs Russian equities — strategy study."
+    )
+    parser.add_argument(
+        "--synthetic",
+        action="store_true",
+        help="Generate synthetic data instead of fetching from cbr.ru / iss.moex.com "
+             "(useful when network is unavailable).",
+    )
+    args = parser.parse_args()
+
+    if args.synthetic:
+        # Override the module-level default for this run only.
+        USE_SYNTHETIC = True
+
     main()
