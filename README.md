@@ -1,7 +1,7 @@
 <h1 align="center">Moex-key-rate</h1>
 
 <p align="center">
-  <img src=".github/assets/stack.svg" height="28" alt="Python · Time Series · Research" />
+  <a href=".github/assets/light/stack.svg#gh-light-mode-only"><img src=".github/assets/light/stack.svg" height="28" alt="Python · Time Series · Research" /></a><a href=".github/assets/stack.svg#gh-dark-mode-only"><img src=".github/assets/stack.svg" height="28" alt="Python · Time Series · Research" /></a>
 </p>
 
 Исследование связи ключевой ставки Банка России с российскими акциями: данные, статистические модели и событийные бэктесты в одном Python-скрипте.
